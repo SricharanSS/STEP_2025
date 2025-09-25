@@ -24,13 +24,6 @@ const typeDefs = `#graphql
     createdAt: String
   }
 
-  type Query {
-    getUsers: [User]
-    getUser(id: ID!): User
-    getTweets: [Tweet]
-    getTweet(id: ID!): Tweet
-  }
-
   input CommentInput {
     content: String
     author: ID
