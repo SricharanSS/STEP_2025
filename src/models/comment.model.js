@@ -6,18 +6,8 @@ const CommentSchema = new mongoose.Schema({
         required: true,
     }, 
     author: {
-        username: {
-            type: String,
-            required: true
-        },
-        email: {
-            type: String,
-            required: true
-        },
-        userId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     },
     tweet: {
         type: mongoose.Schema.Types.ObjectId,
