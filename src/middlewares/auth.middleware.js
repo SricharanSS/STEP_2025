@@ -1,9 +1,10 @@
 const authHelper = require("../helpers/auth.helpers");
+const { sendResponse } = require("../utils/response.utils");
 
 const validateToken = async (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (!authHeader) {
-        res.send("Error: Authorization Denied");
+        sendResponse(res, null, "Authorization Failed", 403);
         return ;
     }
     let bearerToken = authHeader.split(' ')[1];
@@ -19,7 +20,7 @@ const validateToken = async (req, res, next) => {
         next();
     } else {
         console.log("Token is Not Valid. Sending Error Response");
-        res.send("Error: Authorization Failed");
+        sendResponse(res, null, "Authorization Failed", 403);
     }
 }
 

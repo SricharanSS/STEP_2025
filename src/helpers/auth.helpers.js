@@ -1,9 +1,8 @@
-const express = require("express");
 const jwt = require("jsonwebtoken");
 
 const generateToken = async (email) => {
 
-    const token = jwt.sign({email},process.env.SECRET_TOKEN);
+    const token = jwt.sign({email},process.env.SECRET_TOKEN,{expiresIn: "1m"});
 
     return token;
 

@@ -1,7 +1,6 @@
-const express = require("express");
-const jwt = require("jsonwebtoken");
 const authService = require("../services/auth.service");
 const authHelper = require("../helpers/auth.helpers");
+const {sendResponse, sendErrorResponse} = require("../utils/response.utils");
 
 const loginUser = async (req, res) => {
     console.log(req.body);
@@ -14,9 +13,9 @@ const loginUser = async (req, res) => {
     if(isSuccess) {
         token = await authHelper.generateToken(email);
 
-        res.send(token);
+        sendResponse(res, token, "Success", 200);
     } else {
-        res.json("Error: Login Failed");
+        sendErrorResponse(res, null,"Login Failed", 500);
     }
 };
 
