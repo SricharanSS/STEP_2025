@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 
 const generateToken = async (email) => {
 
@@ -32,4 +32,4 @@ const tokenDecode = (token) => {
 	}
 };
 
-module.exports = {generateToken, verifyToken, tokenDecode}
+export {generateToken, verifyToken, tokenDecode};

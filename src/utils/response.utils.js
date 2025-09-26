@@ -6,4 +6,13 @@ const sendResponse = (res, data, message, code) => {
   })
 }
 
-module.exports = {sendResponse}
+const sendErrorResponse = (res, data, message, code) => {
+  res.status(code).json({
+    code,
+    message,
+    error: true,
+    data,
+  })
+}
+
+export {sendResponse, sendErrorResponse};

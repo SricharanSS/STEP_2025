@@ -1,17 +1,17 @@
-const authService = require("../services/auth.service");
-const authHelper = require("../helpers/auth.helpers");
-const {sendResponse, sendErrorResponse} = require("../utils/response.utils");
+import {validateCredentials} from "../services/auth.service.js";
+import {generateToken} from "../helpers/auth.helpers.js";
+import {sendResponse, sendErrorResponse} from "../utils/response.utils.js";
 
 const loginUser = async (req, res) => {
     console.log(req.body);
     // Authenticate the User
     const { email, password } = req.body;
 
-    const isSuccess = await authService.validateCredentials(email, password);
+    const isSuccess = await validateCredentials(email, password);
 
     let token;
     if(isSuccess) {
-        token = await authHelper.generateToken(email);
+        token = await generateToken(email);
 
         sendResponse(res, token, "Success", 200);
     } else {
@@ -19,4 +19,4 @@ const loginUser = async (req, res) => {
     }
 };
 
-module.exports = {loginUser};
+export {loginUser};

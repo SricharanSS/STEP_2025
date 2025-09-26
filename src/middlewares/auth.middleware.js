@@ -1,5 +1,5 @@
-const authHelper = require("../helpers/auth.helpers");
-const { sendResponse } = require("../utils/response.utils");
+import {verifyToken, tokenDecode} from "../helpers/auth.helpers.js";
+import { sendResponse } from "../utils/response.utils.js";
 
 const validateToken = async (req, res, next) => {
     const authHeader = req.headers.authorization;
@@ -9,10 +9,10 @@ const validateToken = async (req, res, next) => {
     }
     let bearerToken = authHeader.split(' ')[1];
 
-    const isValid = await authHelper.verifyToken(bearerToken);
+    const isValid = await verifyToken(bearerToken);
     
     if(isValid) {
-        const decodedToken = await authHelper.tokenDecode(bearerToken);
+        const decodedToken = await tokenDecode(bearerToken);
 			res.locals.userInfo = {
 				email: decodedToken.email,
 			};
@@ -24,4 +24,4 @@ const validateToken = async (req, res, next) => {
     }
 }
 
-module.exports = {validateToken}
+export {validateToken};

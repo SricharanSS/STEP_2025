@@ -7,4 +7,4 @@ const validateCredentials = async (email, password) => {
     return isSuccess;
 }
 
-module.exports = {validateCredentials};
+export {validateCredentials};
