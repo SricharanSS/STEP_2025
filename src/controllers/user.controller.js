@@ -1,5 +1,5 @@
-const { fetchUsers } = require("../services/user.service");
-const { sendResponse } = require("../utils/response.utils");
+import { fetchUsers } from "../services/user.service.js";
+import { sendResponse } from "../utils/response.utils.js";
 
 const getAllUsersController = async (req, res) => {
     let userList = [];
@@ -17,4 +17,4 @@ const getAllUsersController = async (req, res) => {
     }
 }
 
-module.exports = {getAllUsersController};
+export {getAllUsersController};

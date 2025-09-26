@@ -1,5 +1,5 @@
-const { encryptPassword, checkPassword } = require("../helpers/auth.helpers");
-const { checkIfUserExists, createUser } = require("../helpers/db.helper");
+import { encryptPassword, checkPassword } from "../helpers/auth.helpers.js";
+import { checkIfUserExists, createUser } from "../helpers/db.helper.js";
 
 const validateCredentials = async (email, password) => {
     let isSuccess = false;
@@ -32,4 +32,4 @@ const validateRegisterUser = async (username, name, bio, email, password) => {
   return user;
 };
 
-module.exports = {validateCredentials, validateRegisterUser};
+export {validateCredentials, validateRegisterUser};

@@ -1,5 +1,5 @@
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 const generateToken = async (email) => {
 
@@ -45,4 +45,4 @@ const checkPassword = async (plainPassword, hashedPassword) => {
   return match; // true or false
 };
 
-module.exports = {generateToken, verifyToken, tokenDecode, encryptPassword, checkPassword};
+export {generateToken, verifyToken, tokenDecode, encryptPassword, checkPassword};

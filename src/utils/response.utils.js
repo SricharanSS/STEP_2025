@@ -6,4 +6,4 @@ const sendResponse = (res, data, message, code) => {
   })
 }
 
-module.exports = {sendResponse}
+export {sendResponse};

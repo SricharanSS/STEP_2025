@@ -1,4 +1,4 @@
-const User = require("../models/user.model.js");
+import User from "../models/user.model.js";
  
 const createUser = async (username, name, bio, email, password) => {
     const user = await User.create({ 
@@ -23,4 +23,4 @@ const fetchUsersFromDB = async () => {
     return userList;
 }
  
-module.exports = { createUser, checkIfUserExists, fetchUsersFromDB };
+export { createUser, checkIfUserExists, fetchUsersFromDB };

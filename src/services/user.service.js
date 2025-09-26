@@ -1,4 +1,4 @@
-const { fetchUsersFromDB } = require("../helpers/db.helper");
+import { fetchUsersFromDB } from "../helpers/db.helper.js";
 
 const fetchUsers = async () => {
     let userList = [];
@@ -12,4 +12,4 @@ const fetchUsers = async () => {
     return userList;
 }
 
-module.exports = {fetchUsers};
+export {fetchUsers};

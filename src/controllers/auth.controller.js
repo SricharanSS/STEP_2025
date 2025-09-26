@@ -1,11 +1,11 @@
-const authService = require("../services/auth.service");
-const authHelper = require("../helpers/auth.helpers");
-const {sendResponse} = require("../utils/response.utils");
+import {validateCredentials, validateRegisterUser} from "../services/auth.service.js";
+import {generateToken} from "../helpers/auth.helpers.js";
+import {sendResponse} from "../utils/response.utils.js";
 
 const registerUser = async (req, res) => {
   try {
     const { username, name, bio, email, password } = req.body;
-    const responseMsg = await authService.validateRegisterUser(
+    const responseMsg = await validateRegisterUser(
       username,
       name,
       bio,
@@ -26,11 +26,11 @@ const loginUser = async (req, res) => {
     // Authenticate the User
     const { email, password } = req.body;
 
-    const isSuccess = await authService.validateCredentials(email, password);
+    const isSuccess = await validateCredentials(email, password);
 
     let token;
     if(isSuccess) {
-        token = await authHelper.generateToken(email);
+        token = await generateToken(email);
 
         sendResponse(res, token, "Success", 200);
     } else {
@@ -38,4 +38,4 @@ const loginUser = async (req, res) => {
     }
 };
 
-module.exports = {loginUser, registerUser};
+export {loginUser, registerUser};

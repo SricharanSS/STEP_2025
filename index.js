@@ -1,8 +1,9 @@
-const express = require("express");
-require('dotenv').config();
+import express from "express";
+import dotenv from "dotenv";
+dotenv.config();
 const PORT = process.env.PORT;
-const routes = require("./src/routes/routes");
-const { createDBConnection } = require("./src/db/mongo");
+import routes from "./src/routes/routes.js";
+import { createDBConnection } from "./src/db/mongo.js";
 
 const app = express();
 
