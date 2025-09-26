@@ -1,15 +1,19 @@
 const express = require("express");
-const router = express.Router();
+const authRouter = express.Router();
 const authController = require("../controllers/auth.controller");
 const { validateToken } = require("../middlewares/auth.middleware");
 const { sendResponse } = require("../utils/response.utils");
 
-router.post("/login", (req, res) => {
+authRouter.post("/register", (req, res) => {
+	authController.registerUser(req, res);
+});
+
+authRouter.post("/login", (req, res) => {
 	authController.loginUser(req, res);
 });
 
-router.get("/verifyToken", validateToken, (req, res) => {
+authRouter.get("/verifyToken", validateToken, (req, res) => {
 	sendResponse(res, null, "Valid Token", 200);
 })
 
-module.exports = router;
+module.exports = authRouter;

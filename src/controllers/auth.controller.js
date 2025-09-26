@@ -1,6 +1,25 @@
 const authService = require("../services/auth.service");
 const authHelper = require("../helpers/auth.helpers");
-const {sendResponse, sendErrorResponse} = require("../utils/response.utils");
+const {sendResponse} = require("../utils/response.utils");
+
+const registerUser = async (req, res) => {
+  try {
+    const { username, name, bio, email, password } = req.body;
+    const responseMsg = await authService.validateRegisterUser(
+      username,
+      name,
+      bio,
+      email,
+      password
+    );
+ 
+    if (!responseMsg) throw errorMonitor;
+    sendResponse(res, null, "User Created", 201);
+  } catch (error) {
+    console.log("User Registration Failed");
+    sendResponse(res, null, error, 403);
+  }
+};
 
 const loginUser = async (req, res) => {
     console.log(req.body);
@@ -15,8 +34,8 @@ const loginUser = async (req, res) => {
 
         sendResponse(res, token, "Success", 200);
     } else {
-        sendErrorResponse(res, null,"Login Failed", 500);
+        sendResponse(res, null, "Login Failed", 500);
     }
 };
 
-module.exports = {loginUser};
+module.exports = {loginUser, registerUser};
